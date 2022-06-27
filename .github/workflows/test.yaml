@@ -1,0 +1,29 @@
+---
+name: Test to see if the repo works
+on:
+  create:
+
+env:
+  AWS_KEY: ${{ secrets.AWS_KEY }}
+  AWS_SECRET: ${{ secrets.AWS_SECRET }}
+  REPO_NAME: ${{ secrets.REPO_NAME }}
+  TAG_NAME: ${{ secrets.TAG_NAME }}
+
+jobs:
+  test:
+    name: test workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: check-tag-exists
+        uses: mrityunjaygr8/ecr-check-tag@initial-tag
+        with:
+          repository_name: ${{ env.REPO_NAME }}
+          tag_name: ${{ env.TAG_NAME }}
+          AWS_KEY: ${{ env.AWS_KEY }}
+          AWS_SECRET: ${{ env.AWS_SECRET }}
+
+      - name: check-output
+        run: echo "${{ steps.check-tag-exists.outputs.exists}}"
