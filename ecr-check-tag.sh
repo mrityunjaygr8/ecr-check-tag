@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 USAGE="find-ecr-image — Check ECR for existing docker image
 
