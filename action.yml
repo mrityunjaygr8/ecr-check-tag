@@ -1,0 +1,33 @@
+# action.yml
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  repository_name: # id of input
+    description: 'Name of the repository where the tags are to be checked'
+    required: true
+  tag_name: # id of input
+    description: 'Name of the tag to be checked in the repository'
+    required: true
+  AWS_KEY:
+    description: 'The AWS ACCESS KEY ID for the account where the command is to be run'
+    required: true
+  AWS_SECRET:
+    description: 'The AWS SECRET ACCESS KEY for the account where the command is to be run'
+    required: true
+  AWS_REGION:
+    description: 'The region where the command is to be run'
+    required: true
+    default: 'us-east-1'
+outputs:
+  exists: # id of output
+    description: 'Whether the given tag_name was found in the given repository_name'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    AWS_ACCESS_KEY_ID: ${{inputs.AWS_KEY}}
+    AWS_SECRET_ACCESS_KEY: ${{inputs.AWS_SECRET}}
+    AWS_DEFAULT_REGION: ${{inputs.AWS_REGION}}
+  args:
+    - ${{ inputs.repository_name }}
+    - ${{ inputs.tag_name}}
