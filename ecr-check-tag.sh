@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 USAGE="find-ecr-image — Check ECR for existing docker image
 
@@ -21,7 +21,7 @@ if [[ $# -lt 2 ]] || [[ "$1" == "-h" ]]; then
     exit 1
 fi 
 IMAGE_EXISTS="$( aws ecr list-images \
-    --repository-name $1 \
+    --repository-name "$1" \
     --query "imageIds[?imageTag=='$2'].imageTag" \
     --output text )"
 
