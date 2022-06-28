@@ -1,7 +1,6 @@
 ---
 name: Test to see if the repo works
-on:
-  push: "master"
+on: push
 
 env:
   AWS_KEY: ${{ secrets.AWS_KEY }}
