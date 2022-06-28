@@ -7,6 +7,7 @@ env:
   AWS_SECRET: ${{ secrets.AWS_SECRET }}
   REPO_NAME: ${{ secrets.REPO_NAME }}
   TAG_NAME: ${{ secrets.TAG_NAME }}
+  AWS_REGION: "ap-south-1"
 
 jobs:
   test:
@@ -24,6 +25,7 @@ jobs:
           tag_name: ${{ env.TAG_NAME }}
           AWS_KEY: ${{ env.AWS_KEY }}
           AWS_SECRET: ${{ env.AWS_SECRET }}
+          AWS_REGION: ${{ env.AWS_REGION }}
 
       - name: check-output
         run: echo "${{ steps.check-tag-exists.outputs.exists}}"
