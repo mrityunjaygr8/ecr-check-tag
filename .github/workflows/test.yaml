@@ -1,7 +1,7 @@
 ---
 name: Test to see if the repo works
 on:
-  create:
+  push: "master"
 
 env:
   AWS_KEY: ${{ secrets.AWS_KEY }}
@@ -19,7 +19,7 @@ jobs:
 
       - name: check-tag-exists
         id: check-tag-exists
-        uses: mrityunjaygr8/ecr-check-tag@initial-tag
+        uses: mrityunjaygr8/ecr-check-tag@02e077de1920b916d55ac514dbf4221386304b08
         with:
           repository_name: ${{ env.REPO_NAME }}
           tag_name: ${{ env.TAG_NAME }}
