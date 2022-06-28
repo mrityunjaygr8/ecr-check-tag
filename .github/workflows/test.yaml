@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: check-tag-exists
+        id: check-tag-exists
         uses: mrityunjaygr8/ecr-check-tag@initial-tag
         with:
           repository_name: ${{ env.REPO_NAME }}
