@@ -8,9 +8,6 @@ inputs:
   tag_name: # id of input
     description: 'Name of the tag to be checked in the repository'
     required: true
-  aws-region:
-    description: 'AWS Region (e.g. us-east-2; not required if you provide AWS_REGION env variable)'
-    required: false
 outputs:
   exists: # id of output
     description: 'Whether the given tag_name was found in the given repository_name'
@@ -18,9 +15,10 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
-    AWS_ACCESS_KEY_ID: ${{env.AWS_ACCESS_KEY_ID}}
-    AWS_SECRET_ACCESS_KEY: ${{env.AWS_SECRET_ACCESS_KEY}}
-    AWS_DEFAULT_REGION: ${{inputs.AWS_REGION}}
+    AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+    AWS_REGION: ${{ env.AWS_REGION }}
+
   args:
     - ${{ inputs.repository_name }}
     - ${{ inputs.tag_name}}
