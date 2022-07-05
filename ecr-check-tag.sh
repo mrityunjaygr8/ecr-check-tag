@@ -20,8 +20,8 @@ if [[ $# -lt 2 ]] || [[ "$1" == "-h" ]]; then
     help
     exit 1
 fi 
-echo "$AWS_ACCESS_KEY_ID"
-echo "$AWS_SECRET_ACCESS_KEY"
+echo "KEY: $AWS_ACCESS_KEY_ID"
+echo "SECRET: $AWS_SECRET_ACCESS_KEY"
 IMAGE_EXISTS="$( aws ecr list-images \
     --repository-name "$1" \
     --query "imageIds[?imageTag=='$2'].imageTag" \
